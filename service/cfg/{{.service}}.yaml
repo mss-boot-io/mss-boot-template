@@ -16,15 +16,15 @@ logger:
   # 日志格式 json json格式
   formatter: default
 database:
-  url: '{{.database}}'
+  url: {{.database}}
   name: {{.service}}
   timeout: 10
 oauth2:
-  id: '{{.clientID}}'
-  secret: '{{.clientSecret}}'
+  id: {{.clientID}}
+  secret: {{.clientSecret}}
   redirectURL: http://localhost:{{.port}}/{{.service}}
   scopes:
-    - '{{.service}}'
+    - {{.service}}
   endpoint:
     authURL: '{{.oauthServer}}/oauth/authorize'
     tokenURL: '{{.oauthServer}}/oauth/token'
