@@ -22,7 +22,7 @@ import (
 // @name Authorization
 
 // @host localhost:{{.port}}
-// @BasePath /{{.service}}
+// @BasePath /{{.service}}/api/v1
 func main() {
 	c := &cfg.Config{}
 	err := config.Init(flag.Lookup("c").Value.String(), c)
@@ -30,18 +30,17 @@ func main() {
 		log.Printf("cfg init failed, %s\n", err.Error())
 		return
 	}
-	ctx := context.Background()
-
-	mgr := server.New()
+	ctx, cancel := context.WithTimeout(context.TODO(), 5*time.Second)
+	defer cancel()
 
 	r := gin.Default()
 	router.Init(r.Group("/{{.service}}"))
 
-	c.Init(mgr, r)
+	c.Init(r)
 
 	log.Println("starting {{.service}} manage")
 
-	err = mgr.Start(ctx)
+	err = server.Manage.Start(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
