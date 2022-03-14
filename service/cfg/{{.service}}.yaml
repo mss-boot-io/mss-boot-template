@@ -20,8 +20,8 @@ database:
   name: {{.service}}
   timeout: 10
 oauth2:
-  id: {{.clientID}}
-  secret: {{.clientSecret}}
+  id: '{{.clientID}}'
+  secret: '{{.clientSecret}}'
   redirectURL: http://localhost:{{.port}}/{{.service}}
   scopes:
     - {{.service}}
