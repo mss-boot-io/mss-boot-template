@@ -1,10 +1,3 @@
-/*
- * @Author: lwnmengjing
- * @Date: 2022/3/10 13:47
- * @Last Modified by: lwnmengjing
- * @Last Modified time: 2022/3/10 13:47
- */
-
 package cfg
 
 import (
@@ -20,7 +13,7 @@ import (
 
 type Config struct {
 	Logger   config.Logger    `yaml:"logger" json:"logger"`
-	Server   config.Listen    `json:"server" json:"server"`
+	Server   config.Listen    `yaml:"server" json:"server"`
 	Health   *config.Listen   `yaml:"health" json:"health"`
 	Metrics  *config.Listen   `yaml:"metrics" json:"metrics"`
 	Clients  config.Clients   `yaml:"clients" json:"clients"`
@@ -28,7 +21,7 @@ type Config struct {
 	OAuth2   config.OAuth2    `yaml:"oauth2" json:"oauth2"`
 }
 
-func (e *Config) Init(mgr server.Manager, handler http.Handler) {
+func (e *Config) Init(handler http.Handler) {
 	e.Logger.Init()
 	e.Database.Init()
 	oauth2.Cfg = e.OAuth2.Init()
@@ -44,7 +37,7 @@ func (e *Config) Init(mgr server.Manager, handler http.Handler) {
 		runnable = append(runnable, listener.NewMetrics(e.Metrics.Init()...))
 	}
 
-	mgr.Add(runnable...)
+	server.Manage.Add(runnable...)
 }
 
 func (e *Config) OnChange() {
