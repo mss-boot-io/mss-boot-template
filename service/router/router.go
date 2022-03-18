@@ -6,6 +6,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 
+	_ "{{.service}}/controllers"
 	_ "{{.service}}/docs"
 	"{{.service}}/middleware"
 )

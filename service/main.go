@@ -23,7 +23,7 @@ import (
 // @name Authorization
 
 // @host localhost:{{.port}}
-// @BasePath /{{.service}}/api/v1
+// @BasePath 
 func main() {
 	c := &cfg.Config{}
 	err := config.Init(flag.Lookup("c").Value.String(), c)
