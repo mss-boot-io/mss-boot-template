@@ -27,7 +27,7 @@ func init() {
 
 // {{.model | ToCamel}} {{.comment}}
 type {{.model | ToCamel}} struct {
-	{{ range .Columns }}
+	{{ range .columns }}
 	{{.name | ToCamel}} {{.type}} `bson:"{{.name | LeftLower}}" json:"{{.name | LeftLower}}"`
 	{{end}}
 	CreatedAt   time.Time     `json:"createdAt" bson:"createdAt"`
@@ -38,12 +38,14 @@ func ({{.model | ToCamel}}) TableName() string {
 	return "{{.model}}"
 }
 
-func (e *s{{.model | ToCamel}}) Make() {
+func (e *{{.model | ToCamel}}) Make() {
 	// ops := options.Index()
 	// ops.SetName("name")
 	// ops.SetUnique(true)
 	// _, err := e.C().Indexes().CreateOne(context.TODO(), mongo.IndexModel{
-	// 	Keys:    bsonx.Doc{{"name", bsonx.Int32(1)}},
+	// 	Keys:    bsonx.Doc{
+	//	{"name", bsonx.Int32(1)},
+	//},
 	// 	Options: ops,
 	// })
 	// if err != nil {

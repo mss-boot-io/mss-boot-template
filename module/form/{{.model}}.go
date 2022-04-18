@@ -15,10 +15,10 @@ import (
 )
 
 type {{.model | ToCamel}}CreateReq struct {
-{{ range .Columns }}
-{{ if eq .action-create true }}
+{{ range .columns }}
+{{ if eq .action.create true }}
 	//{{.comment}}
-	{{.name | ToCamel}} {{.type}} `bson:"{{.name | LeftLower}}" json:"{{.name | LeftLower}}"`
+	{{.name | ToCamel}} {{.type}} `bson:"{{.name | LeftLower}}" json:"{{.name | LeftLower}}" {{ if .validate }}binding:"{{.validate}}"{{end}}`
 {{ end }}
 {{ end }}
 	//创建时间
@@ -34,10 +34,10 @@ func (e *{{.model | ToCamel}}CreateReq) SetCreatedAt() {
 
 type {{.model | ToCamel}}UpdateReq struct {
 	curd.OneID
-{{ range .Columns }}
-{{ if eq .action-update true }}
+{{ range .columns }}
+{{ if eq .action.update true }}
 	//{{.comment}}
-	{{.name | ToCamel}} {{.type}} `bson:"{{.name | LeftLower}}" json:"{{.name | LeftLower}}"`
+	{{.name | ToCamel}} {{.type}} `bson:"{{.name | LeftLower}}" json:"{{.name | LeftLower}}" {{ if .validate }}binding:"{{.validate}}"{{end}}`
 {{ end }}
 {{ end }}
 	//更新时间
@@ -53,8 +53,8 @@ type {{.model | ToCamel}}GetReq struct {
 }
 
 type {{.model | ToCamel}}GetResp struct {
-{{ range .Columns }}
-{{ if eq .action-get true }}
+{{ range .columns }}
+{{ if eq .action.get true }}
 	//{{.comment}}
 	{{.name | ToCamel}} {{.type}} `bson:"{{.name | LeftLower}}" json:"{{.name | LeftLower}}"`
 {{ end }}
@@ -71,17 +71,17 @@ type {{.model | ToCamel}}DeleteReq struct {
 
 type {{.model | ToCamel}}ListReq struct {
 	curd.Pagination
-{{ range .Columns }}
-{{ if eq .action-search true }}
+{{ range .columns }}
+{{ if eq .action.search true }}
 	//{{.comment}}
-	{{.name | ToCamel}} {{.type}} `bson:"{{.name | LeftLower}}" form:"{{.name | LeftLower}} query:"{{.name | LeftLower}} search:"type:{{.search-type}};column:{{.name | LeftLower}}"`
+	{{.name | ToCamel}} {{.type}} `bson:"{{.name | LeftLower}}" form:"{{.name | LeftLower}}" query:"{{.name | LeftLower}}" search:"type:{{.search.type}};column:{{.name | LeftLower}}"`
 {{ end }}
 {{ end }}
 }
 
 type {{.model | ToCamel}}ListItem struct {
-{{ range .Columns }}
-{{ if eq .action-list true }}
+{{ range .columns }}
+{{ if eq .action.list true }}
 	//{{.comment}}
 	{{.name | ToCamel}} {{.type}} `bson:"{{.name | LeftLower}}" json:"{{.name | LeftLower}}"`
 {{ end }}

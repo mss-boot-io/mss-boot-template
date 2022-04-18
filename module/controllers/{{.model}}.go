@@ -20,7 +20,7 @@ import (
 
 func init() {
 	e := new({{.model | ToCamel}})
-	e.TableName = {{.model}}
+	e.TableName = "{{.model}}"
 	e.Auth = true
 	e.CreateReq = &form.{{.model | ToCamel}}CreateReq{}
 	e.UpdateReq = &form.{{.model | ToCamel}}UpdateReq{}
