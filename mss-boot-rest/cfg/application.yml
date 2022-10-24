@@ -1,9 +1,9 @@
 server:
-  addr: :{{.port}}
-# health:
-#  addr: :{{.healthPort}}
-# metrics:
-#  addr: :{{.metricsPort}}
+  addr: :8080
+#health:
+#  addr: :4000
+#metrics:
+#  addr: :5000
 logger:
   # 日志类型 default: go-admin-core构建的默认日志插件, zap: zap插件
   type: default
@@ -15,16 +15,3 @@ logger:
   level: trace
   # 日志格式 json json格式
   formatter: default
-database:
-  url: {{.database}}
-  name: {{.service}}
-  timeout: 10
-oauth2:
-  id: '{{.clientID}}'
-  secret: '{{.clientSecret}}'
-  redirectURL: http://localhost:{{.port}}/{{.service}}
-  scopes:
-    - {{.service}}
-  endpoint:
-    authURL: '{{.oauthServer}}/oauth/authorize'
-    tokenURL: '{{.oauthServer}}/oauth/token'
