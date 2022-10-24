@@ -1,3 +1,10 @@
+/*
+ * @Author: lwnmengjing
+ * @Date: 2022/3/10 13:47
+ * @Last Modified by: lwnmengjing
+ * @Last Modified time: 2022/3/10 13:47
+ */
+
 package cfg
 
 import (
@@ -7,24 +14,30 @@ import (
 	"github.com/mss-boot-io/mss-boot/core/server"
 	"github.com/mss-boot-io/mss-boot/core/server/listener"
 	"github.com/mss-boot-io/mss-boot/pkg/config"
-	"github.com/mss-boot-io/mss-boot/pkg/config/mongodb"
-	"github.com/mss-boot-io/mss-boot/pkg/oauth2"
+	"github.com/mss-boot-io/mss-boot/pkg/config/source/local"
 )
 
+var Cfg Config
+
+// Config 配置
 type Config struct {
-	Logger   config.Logger    `yaml:"logger" json:"logger"`
-	Server   config.Listen    `yaml:"server" json:"server"`
-	Health   *config.Listen   `yaml:"health" json:"health"`
-	Metrics  *config.Listen   `yaml:"metrics" json:"metrics"`
-	Clients  config.Clients   `yaml:"clients" json:"clients"`
-	Database mongodb.Database `yaml:"database" json:"database"`
-	OAuth2   config.OAuth2    `yaml:"oauth2" json:"oauth2"`
+	Logger  config.Logger  `yaml:"logger" json:"logger"`
+	Server  config.Listen  `yaml:"server" json:"server"`
+	Health  *config.Listen `yaml:"health" json:"health"`
+	Metrics *config.Listen `yaml:"metrics" json:"metrics"`
 }
 
 func (e *Config) Init(handler http.Handler) {
+	frs, err := local.New(local.WithDir("cfg"))
+	if err != nil {
+		log.Fatalf("cfg init failed, %s\n", err.Error())
+	}
+	err = config.Init(frs, &Cfg)
+	if err != nil {
+		log.Fatalf("cfg init failed, %s\n", err.Error())
+	}
+
 	e.Logger.Init()
-	e.Database.Init()
-	oauth2.Cfg = e.OAuth2.Init()
 
 	runnable := []server.Runnable{
 		listener.New("{{.service}}",
@@ -38,10 +51,4 @@ func (e *Config) Init(handler http.Handler) {
 	}
 
 	server.Manage.Add(runnable...)
-}
-
-func (e *Config) OnChange() {
-	e.Logger.Init()
-	e.Database.Init()
-	log.Info("!!! cfg change and reload")
 }

@@ -1,0 +1,14 @@
+project: {{.projectName}}
+service: {{.serviceName}}
+ports:
+  - port: 8080
+    targetPort: 8080
+    name: http
+metrics:
+  scrape: true
+  port: 5000
+  path: /metrics
+hpa: false
+config:
+  - name: {{.projectName}}-{{.serviceName}}-config
+    path: /app/cfg
