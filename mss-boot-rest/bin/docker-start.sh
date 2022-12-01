@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-./{{.service}}
+./application

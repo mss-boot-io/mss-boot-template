@@ -40,7 +40,7 @@ func (e *Config) Init(handler http.Handler) {
 	e.Logger.Init()
 
 	runnable := []server.Runnable{
-		listener.New("{{.service}}",
+		listener.New("{{.serviceName}}",
 			e.Server.Init(listener.WithHandler(handler))...),
 	}
 	if e.Health != nil {

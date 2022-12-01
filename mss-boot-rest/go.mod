@@ -1,4 +1,4 @@
-module github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}
+module github.com/mss-boot-io/mss-boot-monorepo/mss-boot/{{.serviceName}}
 
 go 1.18
 

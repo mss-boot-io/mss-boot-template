@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/mss-boot-io/mss-boot/core/server"
 
-	"github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/cfg"
-	"github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/router"
+	"github.com/mss-boot-io/mss-boot-monorepo/mss-boot/{{.serviceName}}/cfg"
+	"github.com/mss-boot-io/mss-boot-monorepo/mss-boot/{{.serviceName}}/router"
 )
 
 // @title {{.serviceName}} API

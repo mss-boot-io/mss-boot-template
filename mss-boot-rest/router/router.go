@@ -12,9 +12,9 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 
-	_ "github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/controllers"
-	_ "github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/docs"
-	"github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/middleware"
+	_ "github.com/mss-boot-io/mss-boot-monorepo/mss-boot/{{.serviceName}}/controllers"
+	_ "github.com/mss-boot-io/mss-boot-monorepo/mss-boot/{{.serviceName}}/docs"
+	"github.com/mss-boot-io/mss-boot-monorepo/mss-boot/{{.serviceName}}/middleware"
 	"github.com/mss-boot-io/mss-boot/pkg/response"
 )
 

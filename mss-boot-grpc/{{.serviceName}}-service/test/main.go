@@ -14,7 +14,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	pb "github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/proto/v1"
+	pb "github.com/mss-boot-io/mss-boot-monorepo/mss-boot/{{.serviceName}}-proto/v1"
 )
 
 func main() {

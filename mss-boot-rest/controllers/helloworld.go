@@ -13,7 +13,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/mss-boot-io/mss-boot/pkg/response"
 
-	"github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/form"
+	"github.com/mss-boot-io/mss-boot-monorepo/mss-boot/{{.serviceName}}/form"
 )
 
 func init() {
