@@ -9,7 +9,7 @@ import (
 
 	"github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/cfg"
 	"github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/handlers"
-	pb "github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/proto/v1"
+	pb "github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}-sproto/v1"
 )
 
 func main() {

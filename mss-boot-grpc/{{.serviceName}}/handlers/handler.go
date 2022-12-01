@@ -11,7 +11,7 @@ import (
 	log "github.com/mss-boot-io/mss-boot/core/logger"
 	"github.com/mss-boot-io/mss-boot/pkg/server/handler"
 
-	pb "github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/proto/v1"
+	pb "github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}-proto/v1"
 )
 
 type Handler struct {

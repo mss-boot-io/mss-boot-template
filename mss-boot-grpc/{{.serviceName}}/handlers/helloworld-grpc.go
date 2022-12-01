@@ -9,7 +9,8 @@ package handlers
 
 import (
 	"context"
-	pb "github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}/proto/v1"
+	
+	pb "github.com/WhiteMatrixTech/matrix-cloud-monorepo/{{.serviceName}}-proto/v1"
 )
 
 func (h Handler) Call(ctx context.Context, req *pb.CallRequest) (*pb.CallResponse, error) {
